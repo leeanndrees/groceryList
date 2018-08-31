@@ -13,7 +13,7 @@ class GroceryListViewController: UITableViewController {
     let groceryItems = ["pasta", "chocolate"]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return groceryItems.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -22,6 +22,16 @@ class GroceryListViewController: UITableViewController {
         cell?.textLabel?.text = groceryItems[indexPath.row]
         
         return cell!
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            if cell.accessoryType == .none {
+                cell.accessoryType = .checkmark
+            } else {
+                cell.accessoryType = .none
+            }
+        }
     }
     
     override func viewDidLoad() {
