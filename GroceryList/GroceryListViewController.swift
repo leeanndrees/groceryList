@@ -10,7 +10,18 @@ import UIKit
 
 class GroceryListViewController: UITableViewController {
     
-    var groceryItems = ["pasta", "chocolate"]
+    struct GroceryItem {
+        var name: String
+        var quantity: Int
+    }
+    
+    var groceryItems = [
+        GroceryItem(name: "Milk", quantity: 1),
+        GroceryItem(name: "Cat food", quantity: 3),
+        GroceryItem(name: "Yogurt", quantity: 2),
+        GroceryItem(name: "Small zucchini", quantity: 2),
+        GroceryItem(name: "Head of garlic", quantity: 3)
+    ]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groceryItems.count
@@ -19,7 +30,7 @@ class GroceryListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroceryListItem")
         
-        cell?.textLabel?.text = groceryItems[indexPath.row]
+        cell?.textLabel?.text = "\(groceryItems[indexPath.row].name), \(groceryItems[indexPath.row].quantity)"
         
         return cell!
     }
