@@ -10,7 +10,7 @@ import UIKit
 
 class GroceryListViewController: UITableViewController {
     
-    let groceryItems = ["pasta", "chocolate"]
+    var groceryItems = ["pasta", "chocolate"]
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groceryItems.count
@@ -31,6 +31,15 @@ class GroceryListViewController: UITableViewController {
             } else {
                 cell.accessoryType = .none
             }
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.groceryItems.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .middle)
         }
     }
     
